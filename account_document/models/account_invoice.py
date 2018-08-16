@@ -110,7 +110,7 @@ class AccountInvoice(models.Model):
             res[line.tax_id.tax_group_id] += line.amount
         res = sorted(res.items(), key=lambda l: l[0].sequence)
         res = map(lambda l: (
-            l[0].name, formatLang(self.env, l[1], currency_obj=currency)), res)
+            l[0].name, l[1], formatLang(self.env, l[1], currency_obj=currency)), res)
         return res
 
     @api.depends(
